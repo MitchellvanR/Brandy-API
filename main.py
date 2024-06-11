@@ -1,8 +1,10 @@
-from input_handler import InputHandler
+from menus.main_menu import MainMenu
 
 
 def main() -> None:
-    InputHandler.main_menu()
+    print("Starting application...")
+    MainMenu.start_main_menu()
+    print("Application exited.")
 
 
 if __name__ == "__main__":
