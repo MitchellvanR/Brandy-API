@@ -16,7 +16,8 @@ class MainMenu:
         Styler.print_cyan("[3]: Volg dagelijkse calorie-inname (Niet geïmplementeerd)")
         Styler.print_cyan("[4]: Log uit (Niet geïmplementeerd)")
         Styler.print_blue("--={*}=--")
-        Styler.print_white("Typ 'exit' op elk moment om de applicatie af te sluiten")
+        Styler.print_white("Typ 'sluit' op elk moment om de applicatie af te sluiten")
+        Styler.print_white("Typ 'terug' op elk moment om naar het vorige menu te gaan")
 
     @staticmethod
     def start_main_menu() -> None:

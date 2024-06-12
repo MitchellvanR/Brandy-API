@@ -5,9 +5,9 @@ class InputHandler:
     @staticmethod
     def prompt_user_input(prompt: str) -> str:
         user_input = input(prompt).strip().lower()
-        if user_input == "back":
+        if user_input == "terug":
             raise BackException()
-        elif user_input == "exit":
+        elif user_input == "sluit":
             raise ExitException()
         return user_input
 
@@ -20,9 +20,9 @@ class InputHandler:
         while True:
             try:
                 user_input = input(prompt).strip().lower()
-                if user_input == "back":
+                if user_input == "terug":
                     raise BackException()
-                elif user_input == "exit":
+                elif user_input == "sluit":
                     raise ExitException()
                 return conversion_function(user_input)
             except ValueError:
