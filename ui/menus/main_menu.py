@@ -12,9 +12,9 @@ class MainMenu:
         Styler.print_white("What can I do for you today?")
         Styler.print_blue("--={*}=--")
         Styler.print_cyan("[1]: Track a recipe")
-        Styler.print_cyan("[2]: Not implemented")
-        Styler.print_cyan("[3]: Not implemented")
-        Styler.print_cyan("[4]: Not implemented")
+        Styler.print_cyan("[2]: Manage ingredients (Not implemented)")
+        Styler.print_cyan("[3]: Track daily calorie intake (Not implemented)")
+        Styler.print_cyan("[4]: Log out (Not implemented)")
         Styler.print_blue("--={*}=--")
         Styler.print_white("Type 'exit' at any time to exit the application")
 
