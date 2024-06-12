@@ -22,7 +22,7 @@ class RecipeMenu:
         Styler.print_white("Wat wil je doen?")
         Styler.print_blue("--={*}=--")
         Styler.print_cyan("[1]: Voeg een ingrediënt toe")
-        Styler.print_cyan("[2]: Bewaar dit recept (Niet geïmplementeerd)")
+        Styler.print_cyan("[2]: Bewaar dit recept")
         Styler.print_cyan("[3]: Laad een recept (Niet geïmplementeerd)")
         Styler.print_blue("--={*}=--\n")
 
@@ -73,9 +73,9 @@ class RecipeMenu:
 
     @staticmethod
     def save_recipe():
-        ConsoleOperations.clear()
-        Styler.warning("Opslaan...")
         file_name = InputHandler.prompt_string(
             ColorString.blue_string("\nGeef de naam van het bestand waarin u het recept wil opslaan: ")) + ".txt"
+        Styler.warning("Opslaan...")
         RecipeMenu.calorie_counter.save_recipe(file_name)
+        ConsoleOperations.clear()
         Styler.success("Recept opgeslagen!\n")
