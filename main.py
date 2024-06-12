@@ -5,7 +5,7 @@ from ui.console.console_operations import ConsoleOperations
 
 def main() -> None:
     ConsoleOperations.clear()
-    Styler.warning("Starting application...")
+    Styler.warning("Starting application...\n")
     MainMenu.start_main_menu()
     Styler.warning("Application exited.")
 

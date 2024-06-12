@@ -1,6 +1,6 @@
 from input_handler import InputHandler
 from ui.menus.recipe_menu import RecipeMenu
-from ui.menus.exceptions import ExitException
+from ui.menus.exceptions import ExitException, BackException
 from ui.text.styler import Styler
 from ui.text.color_string import ColorString
 from ui.console.console_operations import ConsoleOperations
@@ -27,33 +27,27 @@ class MainMenu:
                     ColorString.blue_string("Please enter one of the options listed above: "))
                 MainMenu.handle_input(user_input)
             except ExitException:
-                print("Exiting application...")
+                ConsoleOperations.clear()
+                Styler.warning("Exiting application...")
                 break
+            except BackException:
+                ConsoleOperations.clear()
+                Styler.warning("You are already on the main menu.\n")
 
     @staticmethod
     def handle_input(user_input: str) -> None:
         match user_input:
             case "1":
-                print()
                 RecipeMenu.start_recipe_menu()
-                print()
             case "2":
                 ConsoleOperations.clear()
-                print()
-                Styler.warning("Not implemented")
-                print()
+                Styler.warning("Not implemented\n")
             case "3":
                 ConsoleOperations.clear()
-                print()
-                Styler.warning("Not implemented")
-                print()
+                Styler.warning("Not implemented\n")
             case "4":
                 ConsoleOperations.clear()
-                print()
-                Styler.warning("Not implemented")
-                print()
+                Styler.warning("Not implemented\n")
             case _:
                 ConsoleOperations.clear()
-                print()
-                Styler.warning("Please enter a valid option")
-                print()
+                Styler.warning("Please enter a valid option\n")
