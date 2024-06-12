@@ -18,6 +18,7 @@ class RecipeMenu:
                 print()
                 calorie_counter.add_ingredient_to_meal(ingredient, weight, calories_per_100g)
             except BackException:
+                ConsoleOperations.clear()
                 break
             except ExitException:
                 raise

@@ -22,7 +22,6 @@ class MainMenu:
     def start_main_menu() -> None:
         while True:
             try:
-                ConsoleOperations.clear()
                 MainMenu.display()
                 user_input = InputHandler.prompt_user_input(
                     ColorString.blue_string("Please enter one of the options listed above: "))
@@ -39,18 +38,22 @@ class MainMenu:
                 RecipeMenu.start_recipe_menu()
                 print()
             case "2":
+                ConsoleOperations.clear()
                 print()
                 Styler.warning("Not implemented")
                 print()
             case "3":
+                ConsoleOperations.clear()
                 print()
                 Styler.warning("Not implemented")
                 print()
             case "4":
+                ConsoleOperations.clear()
                 print()
                 Styler.warning("Not implemented")
                 print()
             case _:
+                ConsoleOperations.clear()
                 print()
                 Styler.warning("Please enter a valid option")
                 print()
