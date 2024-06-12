@@ -38,6 +38,7 @@ class MainMenu:
     def handle_input(user_input: str) -> None:
         match user_input:
             case "1":
+                ConsoleOperations.clear()
                 RecipeMenu.start_recipe_menu()
             case "2":
                 ConsoleOperations.clear()

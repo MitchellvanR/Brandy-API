@@ -7,6 +7,8 @@ from ui.text.styler import Styler
 
 
 class RecipeMenu:
+    calorie_counter = MealCalorieCounter()
+
     @staticmethod
     def display_options() -> None:
         Styler.print_white("Tracking Recipe")
@@ -26,23 +28,46 @@ class RecipeMenu:
 
     @staticmethod
     def start_recipe_menu() -> None:
-        calorie_counter = MealCalorieCounter()
         while True:
             try:
-                ConsoleOperations.clear()
                 RecipeMenu.display_options()
-                calorie_counter.display_recipe_ingredients()
-                option = InputHandler.prompt_string(
+                RecipeMenu.calorie_counter.display_recipe_ingredients()
+                user_input = InputHandler.prompt_string(
                     ColorString.blue_string("Please enter one of the options listed above: "))
-                ingredient = InputHandler.prompt_string(
-                    ColorString.blue_string("\nPlease enter the name of the ingredient: "))
-                weight = InputHandler.prompt_float(
-                    ColorString.blue_string("Please enter the weight of the ingredient (in grams): "))
-                calories_per_100g = InputHandler.prompt_int(
-                    ColorString.blue_string("Please enter the calories per 100g of the ingredient: "))
-                calorie_counter.add_ingredient_to_meal(ingredient, weight, calories_per_100g)
+                RecipeMenu.handle_user_input(user_input)
             except BackException:
                 ConsoleOperations.clear()
                 break
             except ExitException:
                 raise
+
+    @staticmethod
+    def handle_user_input(user_input: str) -> None:
+        match user_input:
+            case "1":
+                RecipeMenu.add_ingredient()
+            case "2":
+                ConsoleOperations.clear()
+                Styler.warning("Not implemented\n")
+            case "3":
+                ConsoleOperations.clear()
+                Styler.warning("Not implemented\n")
+            case _:
+                ConsoleOperations.clear()
+                Styler.warning("Please enter a valid option\n")
+
+    @staticmethod
+    def add_ingredient():
+        try:
+            ingredient = InputHandler.prompt_string(
+                ColorString.blue_string("\nPlease enter the name of the ingredient: "))
+            weight = InputHandler.prompt_float(
+                ColorString.blue_string("Please enter the weight of the ingredient (in grams): "))
+            calories_per_100g = InputHandler.prompt_int(
+                ColorString.blue_string("Please enter the calories per 100g of the ingredient: "))
+            RecipeMenu.calorie_counter.add_ingredient_to_meal(ingredient, weight, calories_per_100g)
+            ConsoleOperations.clear()
+        except BackException:
+            raise
+        except ExitException:
+            raise
