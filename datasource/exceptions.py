@@ -1,0 +1,2 @@
+class FileIOException(Exception):
+    pass

@@ -1,4 +1,5 @@
 from datasource.file_io import FileIO
+from datasource.exceptions import FileIOException
 from ui.text.styler import Styler
 from models.meal_ingredient import MealIngredient
 import os
@@ -13,13 +14,16 @@ class RecipeDao:
 
     def save_recipe(self, file_name: str, content: dict) -> None:
         formatted_content = self.__format_recipe_to_string(content)
-        file_path = os.path.join(self.recipe_root_directory, file_name)
+        file_path = os.path.join(self.recipe_root_directory, file_name + ".txt")
         FileIO.write_to_file(file_path, formatted_content)
 
     def load_recipe(self, file_name: str) -> dict:
-        file_path = os.path.join(self.recipe_root_directory, file_name)
-        content = FileIO.get_file_content(file_path)
-        return self.__format_recipe_to_dictionary(content)
+        file_path = os.path.join(self.recipe_root_directory, file_name + ".txt")
+        try:
+            content = FileIO.get_file_content(file_path)
+            return self.__format_recipe_to_dictionary(content)
+        except FileIOException:
+            raise
 
     # Method is not static due to it being a private helper method. Hence, the warning suppression below.
     # noinspection PyMethodMayBeStatic
@@ -37,6 +41,8 @@ class RecipeDao:
     # Method is not static due to it being a private helper method. Hence, the warning suppression below.
     # noinspection PyMethodMayBeStatic
     def __format_recipe_to_dictionary(self, content: str) -> dict:
+        if len(content) <= 0:
+            return {}
         ingredient_strings = content.strip().split("\n")
         recipe = {}
         for ingredient_string in ingredient_strings:

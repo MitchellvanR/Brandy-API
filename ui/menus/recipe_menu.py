@@ -1,4 +1,6 @@
 from models.meal_calorie_counter import MealCalorieCounter
+from datasource.exceptions import FileIOException
+from ui.menus.load_recipe_menu import LoadRecipeMenu
 from ui.input.input_handler import InputHandler
 from ui.menus.exceptions import BackException, ExitException
 from ui.console.console_operations import ConsoleOperations
@@ -23,7 +25,7 @@ class RecipeMenu:
         Styler.print_blue("--={*}=--")
         Styler.print_cyan("[1]: Voeg een ingrediënt toe")
         Styler.print_cyan("[2]: Bewaar dit recept")
-        Styler.print_cyan("[3]: Laad een recept (Niet geïmplementeerd)")
+        Styler.print_cyan("[3]: Laad een recept")
         Styler.print_blue("--={*}=--\n")
 
     @staticmethod
@@ -50,13 +52,13 @@ class RecipeMenu:
                 RecipeMenu.save_recipe()
             case "3":
                 RecipeMenu.load_recipe()
-                ConsoleOperations.clear()
+                # ConsoleOperations.clear()
             case _:
                 ConsoleOperations.clear()
                 Styler.warning("Voer een geldige optie in\n")
 
     @staticmethod
-    def add_ingredient():
+    def add_ingredient() -> None:
         try:
             ingredient = InputHandler.prompt_string(
                 ColorString.blue_string("\nVoer de naam van het ingrediënt in: "))
@@ -72,15 +74,18 @@ class RecipeMenu:
             raise
 
     @staticmethod
-    def save_recipe():
+    def save_recipe() -> None:
         file_name = InputHandler.prompt_string(
-            ColorString.blue_string("\nGeef de naam van het bestand waarin u het recept wil opslaan: ")) + ".txt"
+            ColorString.blue_string("\nGeef de naam van het bestand waarin u het recept wil opslaan: "))
         Styler.warning("Opslaan...")
         RecipeMenu.calorie_counter.save_recipe(file_name)
         ConsoleOperations.clear()
         Styler.success("Recept opgeslagen!\n")
 
     @staticmethod
-    def load_recipe():
-        file_name = "pasta-rode-saus.txt"
-        RecipeMenu.calorie_counter.load_recipe(file_name)
+    def load_recipe() -> None:
+        ConsoleOperations.clear()
+        try:
+            LoadRecipeMenu.start_load_recipe_menu(RecipeMenu.calorie_counter)
+        except FileIOException:
+            pass

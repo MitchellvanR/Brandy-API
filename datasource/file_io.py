@@ -1,4 +1,6 @@
+from ui.console.console_operations import ConsoleOperations
 from ui.text.styler import Styler
+from datasource.exceptions import FileIOException
 
 
 class FileIO:
@@ -8,9 +10,13 @@ class FileIO:
             with open(path, "r") as file:
                 return file.read()
         except FileNotFoundError:
-            Styler.error(f"Error: The file at {path} was not found.")
+            ConsoleOperations.clear()
+            Styler.error(f"Error: The file at {path} was not found.\n")
+            raise FileIOException(path)
         except IOError as error:
-            Styler.error(f"Error reading file at {path}: {error}")
+            ConsoleOperations.clear()
+            Styler.error(f"Error reading file at {path}: {error}\n")
+            raise FileIOException(path)
 
     @staticmethod
     def write_to_file(path: str, content: str) -> None:

@@ -1,6 +1,5 @@
-from typing import TextIO
-
 from models.meal_ingredient import MealIngredient
+from datasource.exceptions import FileIOException
 from datasource.recipe_dao import RecipeDao
 from ui.text.styler import Styler
 
@@ -36,5 +35,8 @@ class MealCalorieCounter:
         self.recipe_dao.save_recipe(file_name, self.ingredients)
 
     def load_recipe(self, file_name: str) -> None:
-        recipe = self.recipe_dao.load_recipe(file_name)
-        self.ingredients = recipe
+        try:
+            recipe = self.recipe_dao.load_recipe(file_name)
+            self.ingredients = recipe
+        except FileIOException:
+            raise
