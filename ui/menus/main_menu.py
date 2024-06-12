@@ -1,4 +1,4 @@
-from input_handler import InputHandler
+from ui.input.input_handler import InputHandler
 from ui.menus.recipe_menu import RecipeMenu
 from ui.menus.exceptions import ExitException, BackException
 from ui.text.styler import Styler

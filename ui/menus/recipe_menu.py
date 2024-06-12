@@ -1,5 +1,5 @@
-from meal_calorie_counter import MealCalorieCounter
-from input_handler import InputHandler
+from models.meal_calorie_counter import MealCalorieCounter
+from ui.input.input_handler import InputHandler
 from ui.menus.exceptions import BackException, ExitException
 from ui.console.console_operations import ConsoleOperations
 from ui.text.color_string import ColorString
@@ -32,9 +32,10 @@ class RecipeMenu:
                 ConsoleOperations.clear()
                 RecipeMenu.display_options()
                 calorie_counter.display_recipe_ingredients()
-                option = InputHandler.prompt_string("Please enter one of the options listed above: ")
+                option = InputHandler.prompt_string(
+                    ColorString.blue_string("Please enter one of the options listed above: "))
                 ingredient = InputHandler.prompt_string(
-                    ColorString.blue_string("Please enter the name of the ingredient: "))
+                    ColorString.blue_string("\nPlease enter the name of the ingredient: "))
                 weight = InputHandler.prompt_float(
                     ColorString.blue_string("Please enter the weight of the ingredient (in grams): "))
                 calories_per_100g = InputHandler.prompt_int(

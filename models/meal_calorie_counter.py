@@ -1,4 +1,4 @@
-from meal_ingredient import MealIngredient
+from models.meal_ingredient import MealIngredient
 from ui.text.styler import Styler
 from ui.text.color_string import ColorString
 
