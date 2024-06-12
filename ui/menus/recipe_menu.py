@@ -49,8 +49,8 @@ class RecipeMenu:
             case "2":
                 RecipeMenu.save_recipe()
             case "3":
+                RecipeMenu.load_recipe()
                 ConsoleOperations.clear()
-                Styler.warning("Niet geïmplementeerd\n")
             case _:
                 ConsoleOperations.clear()
                 Styler.warning("Voer een geldige optie in\n")
@@ -79,3 +79,8 @@ class RecipeMenu:
         RecipeMenu.calorie_counter.save_recipe(file_name)
         ConsoleOperations.clear()
         Styler.success("Recept opgeslagen!\n")
+
+    @staticmethod
+    def load_recipe():
+        file_name = "pasta-rode-saus.txt"
+        RecipeMenu.calorie_counter.load_recipe(file_name)
