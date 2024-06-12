@@ -1,6 +1,6 @@
 from meal_calorie_counter import MealCalorieCounter
 from input_handler import InputHandler
-from menus.exceptions import BackException, ExitException
+from ui.menus.exceptions import BackException, ExitException
 
 
 class RecipeMenu:

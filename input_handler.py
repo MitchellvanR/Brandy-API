@@ -1,4 +1,4 @@
-from menus.exceptions import BackException, ExitException
+from ui.menus.exceptions import BackException, ExitException
 
 
 class InputHandler:

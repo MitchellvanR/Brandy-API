@@ -1,10 +1,11 @@
-from menus.main_menu import MainMenu
+from ui.menus.main_menu import MainMenu
+from ui.text.styler import Styler
 
 
 def main() -> None:
-    print("Starting application...")
+    Styler.warning("Starting application...")
     MainMenu.start_main_menu()
-    print("Application exited.")
+    Styler.warning("Application exited.")
 
 
 if __name__ == "__main__":
