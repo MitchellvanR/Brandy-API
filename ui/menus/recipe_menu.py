@@ -47,8 +47,7 @@ class RecipeMenu:
             case "1":
                 RecipeMenu.add_ingredient()
             case "2":
-                ConsoleOperations.clear()
-                Styler.warning("Niet geïmplementeerd\n")
+                RecipeMenu.save_recipe()
             case "3":
                 ConsoleOperations.clear()
                 Styler.warning("Niet geïmplementeerd\n")
@@ -71,3 +70,12 @@ class RecipeMenu:
             raise
         except ExitException:
             raise
+
+    @staticmethod
+    def save_recipe():
+        ConsoleOperations.clear()
+        Styler.warning("Opslaan...")
+        file_name = InputHandler.prompt_string(
+            ColorString.blue_string("\nGeef de naam van het bestand waarin u het recept wil opslaan: ")) + ".txt"
+        RecipeMenu.calorie_counter.save_recipe(file_name)
+        Styler.success("Recept opgeslagen!\n")

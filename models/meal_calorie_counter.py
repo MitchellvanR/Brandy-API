@@ -1,13 +1,15 @@
 from models.meal_ingredient import MealIngredient
+from datasource.recipe_dao import RecipeDao
 from ui.text.styler import Styler
-from ui.text.color_string import ColorString
 
 
 class MealCalorieCounter:
+    recipe_dao: RecipeDao
     ingredients: dict
     total_calories: int
 
     def __init__(self) -> None:
+        self.recipe_dao = RecipeDao()
         self.ingredients = {}
         self.total_calories = 0
 
@@ -27,3 +29,6 @@ class MealCalorieCounter:
 
     def get_total_calories(self):
         return self.total_calories
+
+    def save_recipe(self, file_name: str) -> None:
+        self.recipe_dao.save_recipe(file_name, self.ingredients)
