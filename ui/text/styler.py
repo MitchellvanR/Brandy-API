@@ -3,6 +3,10 @@ from ui.text.text_alterations import TextAlterations
 
 class Styler:
     @staticmethod
+    def print_gray(text: str) -> None:
+        print(text)
+
+    @staticmethod
     def print_green(text: str) -> None:
         print(TextAlterations.GREEN + text + TextAlterations.END)
 
@@ -27,7 +31,7 @@ class Styler:
         print(TextAlterations.YELLOW + text + TextAlterations.END)
 
     @staticmethod
-    def print_bold(text: str) -> None:
+    def print_white(text: str) -> None:
         print(TextAlterations.BOLD + text + TextAlterations.END)
 
     @staticmethod

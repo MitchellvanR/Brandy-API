@@ -9,14 +9,14 @@ from ui.console.console_operations import ConsoleOperations
 class MainMenu:
     @staticmethod
     def display() -> None:
-        Styler.print_bold("What can I do for you today?")
-        Styler.print_blue(ColorString.bold_string("--={*}=--"))
+        Styler.print_white("What can I do for you today?")
+        Styler.print_blue("--={*}=--")
         Styler.print_cyan("[1]: Track a recipe")
         Styler.print_cyan("[2]: Not implemented")
         Styler.print_cyan("[3]: Not implemented")
         Styler.print_cyan("[4]: Not implemented")
-        Styler.print_blue(ColorString.bold_string("--={*}=--"))
-        Styler.print_bold("Type 'exit' at any time to exit the application")
+        Styler.print_blue("--={*}=--")
+        Styler.print_white("Type 'exit' at any time to exit the application")
 
     @staticmethod
     def start_main_menu() -> None:
