@@ -11,19 +11,19 @@ class RecipeMenu:
 
     @staticmethod
     def display_options() -> None:
-        Styler.print_white("Tracking Recipe")
+        Styler.print_white("Recept Volgen")
         Styler.print_blue("--={*}=--")
-        Styler.print_gray("Please enter the ingredients of your recipe, along")
-        Styler.print_gray("with the weight of the ingredient and the amount")
-        Styler.print_gray("of calories per 100g. The total amount of")
-        Styler.print_gray("calories in this recipe will be printed after")
-        Styler.print_gray("entering your ingredient.")
+        Styler.print_gray("Voer de ingrediënten van je recept in, samen")
+        Styler.print_gray("met het gewicht van het ingrediënt en de hoeveelheid")
+        Styler.print_gray("calorieën per 100g. Het totale aantal")
+        Styler.print_gray("calorieën in dit recept wordt weergegeven na")
+        Styler.print_gray("het invoeren van je ingrediënt.")
         Styler.print_blue("--={*}=--")
-        Styler.print_white("What would you like to do?")
+        Styler.print_white("Wat wil je doen?")
         Styler.print_blue("--={*}=--")
-        Styler.print_cyan("[1]: Add an ingredient")
-        Styler.print_cyan("[2]: Save this recipe (Not implemented)")
-        Styler.print_cyan("[3]: Load a recipe (Not implemented)")
+        Styler.print_cyan("[1]: Voeg een ingrediënt toe")
+        Styler.print_cyan("[2]: Bewaar dit recept (Niet geïmplementeerd)")
+        Styler.print_cyan("[3]: Laad een recept (Niet geïmplementeerd)")
         Styler.print_blue("--={*}=--\n")
 
     @staticmethod
@@ -33,7 +33,7 @@ class RecipeMenu:
                 RecipeMenu.display_options()
                 RecipeMenu.calorie_counter.display_recipe_ingredients()
                 user_input = InputHandler.prompt_string(
-                    ColorString.blue_string("Please enter one of the options listed above: "))
+                    ColorString.blue_string("Voer een van de bovenstaande opties in: "))
                 RecipeMenu.handle_user_input(user_input)
             except BackException:
                 ConsoleOperations.clear()
@@ -48,23 +48,23 @@ class RecipeMenu:
                 RecipeMenu.add_ingredient()
             case "2":
                 ConsoleOperations.clear()
-                Styler.warning("Not implemented\n")
+                Styler.warning("Niet geïmplementeerd\n")
             case "3":
                 ConsoleOperations.clear()
-                Styler.warning("Not implemented\n")
+                Styler.warning("Niet geïmplementeerd\n")
             case _:
                 ConsoleOperations.clear()
-                Styler.warning("Please enter a valid option\n")
+                Styler.warning("Voer een geldige optie in\n")
 
     @staticmethod
     def add_ingredient():
         try:
             ingredient = InputHandler.prompt_string(
-                ColorString.blue_string("\nPlease enter the name of the ingredient: "))
+                ColorString.blue_string("\nVoer de naam van het ingrediënt in: "))
             weight = InputHandler.prompt_float(
-                ColorString.blue_string("Please enter the weight of the ingredient (in grams): "))
+                ColorString.blue_string("Voer het gewicht van het ingrediënt in (in gram): "))
             calories_per_100g = InputHandler.prompt_int(
-                ColorString.blue_string("Please enter the calories per 100g of the ingredient: "))
+                ColorString.blue_string("Voer het aantal calorieën per 100g van het ingrediënt in: "))
             RecipeMenu.calorie_counter.add_ingredient_to_meal(ingredient, weight, calories_per_100g)
             ConsoleOperations.clear()
         except BackException:

@@ -5,9 +5,9 @@ from ui.console.console_operations import ConsoleOperations
 
 def main() -> None:
     ConsoleOperations.clear()
-    Styler.warning("Starting application...\n")
+    Styler.warning("Applicatie wordt gestart...\n")
     MainMenu.start_main_menu()
-    Styler.warning("Application exited.")
+    Styler.warning("Applicatie afgesloten.")
 
 
 if __name__ == "__main__":

@@ -9,14 +9,14 @@ from ui.console.console_operations import ConsoleOperations
 class MainMenu:
     @staticmethod
     def display() -> None:
-        Styler.print_white("What can I do for you today?")
+        Styler.print_white("Wat kan ik vandaag voor je doen?")
         Styler.print_blue("--={*}=--")
-        Styler.print_cyan("[1]: Track a recipe")
-        Styler.print_cyan("[2]: Manage ingredients (Not implemented)")
-        Styler.print_cyan("[3]: Track daily calorie intake (Not implemented)")
-        Styler.print_cyan("[4]: Log out (Not implemented)")
+        Styler.print_cyan("[1]: Volg een recept")
+        Styler.print_cyan("[2]: Beheer ingrediënten en voedselproducten (Niet geïmplementeerd)")
+        Styler.print_cyan("[3]: Volg dagelijkse calorie-inname (Niet geïmplementeerd)")
+        Styler.print_cyan("[4]: Log uit (Niet geïmplementeerd)")
         Styler.print_blue("--={*}=--")
-        Styler.print_white("Type 'exit' at any time to exit the application")
+        Styler.print_white("Typ 'exit' op elk moment om de applicatie af te sluiten")
 
     @staticmethod
     def start_main_menu() -> None:
@@ -24,15 +24,15 @@ class MainMenu:
             try:
                 MainMenu.display()
                 user_input = InputHandler.prompt_user_input(
-                    ColorString.blue_string("Please enter one of the options listed above: "))
+                    ColorString.blue_string("Voer een van de bovenstaande opties in: "))
                 MainMenu.handle_input(user_input)
             except ExitException:
                 ConsoleOperations.clear()
-                Styler.warning("Exiting application...")
+                Styler.warning("Applicatie wordt afgesloten...")
                 break
             except BackException:
                 ConsoleOperations.clear()
-                Styler.warning("You are already on the main menu.\n")
+                Styler.warning("Je bevindt je al in het hoofdmenu.\n")
 
     @staticmethod
     def handle_input(user_input: str) -> None:
@@ -42,13 +42,13 @@ class MainMenu:
                 RecipeMenu.start_recipe_menu()
             case "2":
                 ConsoleOperations.clear()
-                Styler.warning("Not implemented\n")
+                Styler.warning("Niet geïmplementeerd\n")
             case "3":
                 ConsoleOperations.clear()
-                Styler.warning("Not implemented\n")
+                Styler.warning("Niet geïmplementeerd\n")
             case "4":
                 ConsoleOperations.clear()
-                Styler.warning("Not implemented\n")
+                Styler.warning("Niet geïmplementeerd\n")
             case _:
                 ConsoleOperations.clear()
-                Styler.warning("Please enter a valid option\n")
+                Styler.warning("Voer een geldige optie in\n")
