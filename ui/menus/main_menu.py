@@ -3,6 +3,7 @@ from ui.menus.recipe_menu import RecipeMenu
 from ui.menus.exceptions import ExitException
 from ui.text.styler import Styler
 from ui.text.color_string import ColorString
+from ui.console.console_operations import ConsoleOperations
 
 
 class MainMenu:
@@ -21,6 +22,7 @@ class MainMenu:
     def start_main_menu() -> None:
         while True:
             try:
+                ConsoleOperations.clear()
                 MainMenu.display()
                 user_input = InputHandler.prompt_user_input(
                     ColorString.blue_string("Please enter one of the options listed above: "))
