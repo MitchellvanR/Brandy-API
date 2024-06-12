@@ -17,8 +17,12 @@ class RecipeMenu:
         Styler.print_gray("calories in this recipe will be printed after")
         Styler.print_gray("entering your ingredient.")
         Styler.print_blue("--={*}=--")
-        Styler.print_cyan("Type 'save' to save recipe")
-        Styler.print_cyan("or type 'load' to load a saved recipe.\n")
+        Styler.print_white("What would you like to do?")
+        Styler.print_blue("--={*}=--")
+        Styler.print_cyan("[1]: Add an ingredient")
+        Styler.print_cyan("[2]: Save this recipe (Not implemented)")
+        Styler.print_cyan("[3]: Load a recipe (Not implemented)")
+        Styler.print_blue("--={*}=--\n")
 
     @staticmethod
     def start_recipe_menu() -> None:
@@ -28,6 +32,7 @@ class RecipeMenu:
                 ConsoleOperations.clear()
                 RecipeMenu.display_options()
                 calorie_counter.display_recipe_ingredients()
+                option = InputHandler.prompt_string("Please enter one of the options listed above: ")
                 ingredient = InputHandler.prompt_string(
                     ColorString.blue_string("Please enter the name of the ingredient: "))
                 weight = InputHandler.prompt_float(
