@@ -23,7 +23,7 @@ class MealCalorieCounter:
                            f"{ingredient.get_weight()}g")
             total_calories += ingredient.get_calories_in_portion()
         self.total_calories = total_calories
-        Styler.success(f"Total calories: {self.get_total_calories()}")
+        Styler.success(f"Total calories: {self.get_total_calories()}\n")
 
     def get_total_calories(self):
         return self.total_calories
