@@ -18,7 +18,7 @@ class MealCalorieCounter:
         total_calories = 0
         for key in self.ingredients:
             ingredient = self.ingredients[key]
-            Styler.success(f"{ingredient.get_name()}: "
+            Styler.success(f"{ingredient.get_name().capitalize()}: "
                            f"{ingredient.get_calories_in_portion()} kcal for "
                            f"{ingredient.get_weight()}g")
             total_calories += ingredient.get_calories_in_portion()
