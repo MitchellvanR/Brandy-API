@@ -37,6 +37,7 @@ class MealCalorieCounter:
         return self.current_file_name
 
     def save_recipe(self, file_name: str) -> None:
+        self.current_file_name = file_name
         self.recipe_dao.save_recipe(file_name, self.ingredients)
 
     def load_recipe(self, file_name: str) -> None:

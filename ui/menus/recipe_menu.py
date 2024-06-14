@@ -96,6 +96,11 @@ class RecipeMenu:
         try:
             DisplayRecipesMenu.set_display_mode(display_mode)
             DisplayRecipesMenu.start_display_recipes_menu(RecipeMenu.calorie_counter)
+            match display_mode:
+                case DisplayRecipeMenuModes.LOAD:
+                    Styler.success("Recept geladen!\n")
+                case DisplayRecipeMenuModes.DELETE:
+                    Styler.success("Recept verwijderd! \n")
         except FileIOException:
             pass
 
