@@ -15,6 +15,8 @@ class RecipeMenu:
     def display_options() -> None:
         Styler.print_white("Recept Volgen")
         Styler.print_blue("--={*}=--")
+        Styler.print_pink(f"Huidig recept: {RecipeMenu.calorie_counter.get_current_file_name()}")
+        Styler.print_blue("--={*}=--")
         Styler.print_gray("Voer de ingrediënten van je recept in, samen")
         Styler.print_gray("met het gewicht van het ingrediënt en de hoeveelheid")
         Styler.print_gray("calorieën per 100g. Het totale aantal")

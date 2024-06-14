@@ -6,11 +6,13 @@ from ui.text.styler import Styler
 
 class MealCalorieCounter:
     recipe_dao: RecipeDao
+    current_file_name: str
     ingredients: dict
     total_calories: int
 
     def __init__(self) -> None:
         self.recipe_dao = RecipeDao()
+        self.current_file_name = "Nieuw Recept"
         self.ingredients = {}
         self.total_calories = 0
 
@@ -28,19 +30,23 @@ class MealCalorieCounter:
         self.total_calories = total_calories
         Styler.success(f"\nTotale calorieën: {self.get_total_calories()}\n")
 
-    def get_total_calories(self):
+    def get_total_calories(self) -> int:
         return self.total_calories
+
+    def get_current_file_name(self) -> str:
+        return self.current_file_name
 
     def save_recipe(self, file_name: str) -> None:
         self.recipe_dao.save_recipe(file_name, self.ingredients)
 
     def load_recipe(self, file_name: str) -> None:
         try:
+            self.current_file_name = file_name
             recipe = self.recipe_dao.load_recipe(file_name)
             self.ingredients = recipe
         except FileIOException:
             raise
 
-    def clear_recipe(self):
+    def clear_recipe(self) -> None:
         self.ingredients = {}
         self.total_calories = 0
