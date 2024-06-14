@@ -10,7 +10,7 @@ from ui.menus.display_recipe_menu_modes import DisplayRecipeMenuModes
 
 
 class RecipeMenu:
-    calorie_counter = MealCalorieCounter()
+    calorie_counter: MealCalorieCounter = MealCalorieCounter()
 
     @staticmethod
     def display_options() -> None:
@@ -28,9 +28,10 @@ class RecipeMenu:
         Styler.print_blue("--={*}=--")
         Styler.print_cyan("[1]: Voeg een ingrediënt toe")
         Styler.print_cyan("[2]: Bewaar dit recept")
-        Styler.print_cyan("[3]: Laad een recept")
-        Styler.print_cyan("[4]: Verwijder een recept")
-        Styler.print_cyan("[5]: Maak recept leeg")
+        Styler.print_cyan("[3]: Bewaar als nieuw recept")
+        Styler.print_cyan("[4]: Laad een recept")
+        Styler.print_cyan("[5]: Verwijder een recept")
+        Styler.print_cyan("[6]: Maak recept leeg")
         Styler.print_blue("--={*}=--\n")
 
     @staticmethod
@@ -54,12 +55,14 @@ class RecipeMenu:
             case "1":
                 RecipeMenu.add_ingredient()
             case "2":
-                RecipeMenu.save_recipe()
+                RecipeMenu.evaluate_recipe_saving_mode()
             case "3":
-                RecipeMenu.start_display_recipe_menu(DisplayRecipeMenuModes.LOAD)
+                RecipeMenu.save_as_new_recipe()
             case "4":
-                RecipeMenu.start_display_recipe_menu(DisplayRecipeMenuModes.DELETE)
+                RecipeMenu.start_display_recipe_menu(DisplayRecipeMenuModes.LOAD)
             case "5":
+                RecipeMenu.start_display_recipe_menu(DisplayRecipeMenuModes.DELETE)
+            case "6":
                 RecipeMenu.clear_recipe()
             case _:
                 ConsoleOperations.clear()
@@ -82,9 +85,21 @@ class RecipeMenu:
             raise
 
     @staticmethod
-    def save_recipe() -> None:
+    def evaluate_recipe_saving_mode() -> None:
+        file_name = RecipeMenu.calorie_counter.get_current_file_name()
+        if file_name == "Nieuw Recept":
+            RecipeMenu.save_as_new_recipe()
+        else:
+            RecipeMenu.save_recipe(file_name)
+
+    @staticmethod
+    def save_as_new_recipe() -> None:
         file_name = InputHandler.prompt_string(
             ColorString.blue_string("\nGeef de naam van het bestand waarin u het recept wil opslaan: "))
+        RecipeMenu.save_recipe(file_name)
+
+    @staticmethod
+    def save_recipe(file_name: str) -> None:
         Styler.warning("Opslaan...")
         RecipeMenu.calorie_counter.save_recipe(file_name)
         ConsoleOperations.clear()
