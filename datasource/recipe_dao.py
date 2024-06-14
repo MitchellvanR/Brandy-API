@@ -25,6 +25,13 @@ class RecipeDao:
         except FileIOException:
             raise
 
+    def delete_recipe(self, file_name: str) -> None:
+        file_path = os.path.join(self.recipe_root_directory, file_name + ".txt")
+        try:
+            FileIO.delete_file(file_path)
+        except FileIOException:
+            raise
+
     # Method is not static due to it being a private helper method. Hence, the warning suppression below.
     # noinspection PyMethodMayBeStatic
     def __format_recipe_to_string(self, content: dict) -> str:

@@ -1,11 +1,12 @@
 from models.meal_calorie_counter import MealCalorieCounter
 from datasource.exceptions import FileIOException
-from ui.menus.load_recipe_menu import LoadRecipeMenu
+from ui.menus.display_recipe_menu import DisplayRecipesMenu
 from ui.input.input_handler import InputHandler
 from ui.menus.exceptions import BackException, ExitException
 from ui.console.console_operations import ConsoleOperations
 from ui.text.color_string import ColorString
 from ui.text.styler import Styler
+from ui.menus.display_recipe_menu_modes import DisplayRecipeMenuModes
 
 
 class RecipeMenu:
@@ -28,7 +29,8 @@ class RecipeMenu:
         Styler.print_cyan("[1]: Voeg een ingrediënt toe")
         Styler.print_cyan("[2]: Bewaar dit recept")
         Styler.print_cyan("[3]: Laad een recept")
-        Styler.print_cyan("[4]: Maak recept leeg")
+        Styler.print_cyan("[4]: Verwijder een recept")
+        Styler.print_cyan("[5]: Maak recept leeg")
         Styler.print_blue("--={*}=--\n")
 
     @staticmethod
@@ -54,8 +56,10 @@ class RecipeMenu:
             case "2":
                 RecipeMenu.save_recipe()
             case "3":
-                RecipeMenu.load_recipe()
+                RecipeMenu.start_display_recipe_menu(DisplayRecipeMenuModes.LOAD)
             case "4":
+                RecipeMenu.start_display_recipe_menu(DisplayRecipeMenuModes.DELETE)
+            case "5":
                 RecipeMenu.clear_recipe()
             case _:
                 ConsoleOperations.clear()
@@ -87,10 +91,11 @@ class RecipeMenu:
         Styler.success("Recept opgeslagen!\n")
 
     @staticmethod
-    def load_recipe() -> None:
+    def start_display_recipe_menu(display_mode: str) -> None:
         ConsoleOperations.clear()
         try:
-            LoadRecipeMenu.start_load_recipe_menu(RecipeMenu.calorie_counter)
+            DisplayRecipesMenu.set_display_mode(display_mode)
+            DisplayRecipesMenu.start_display_recipes_menu(RecipeMenu.calorie_counter)
         except FileIOException:
             pass
 

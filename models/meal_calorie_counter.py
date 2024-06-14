@@ -47,6 +47,15 @@ class MealCalorieCounter:
         except FileIOException:
             raise
 
+    def delete_recipe(self, file_name: str) -> None:
+        try:
+            self.current_file_name = "Nieuw Recept"
+            self.ingredients = {}
+            self.total_calories = 0
+            self.recipe_dao.delete_recipe(file_name)
+        except FileIOException:
+            raise
+
     def clear_recipe(self) -> None:
         self.ingredients = {}
         self.total_calories = 0

@@ -1,3 +1,5 @@
+import os.path
+
 from ui.console.console_operations import ConsoleOperations
 from ui.text.styler import Styler
 from datasource.exceptions import FileIOException
@@ -33,3 +35,9 @@ class FileIO:
                 file.write(content)
         except IOError as error:
             Styler.error(f"Error writing to file at {path}: {error}")
+
+    @staticmethod
+    def delete_file(path: str) -> None:
+        if not os.path.exists(path):
+            raise FileIOException(path)
+        os.remove(path)
