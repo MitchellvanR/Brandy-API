@@ -40,3 +40,7 @@ class MealCalorieCounter:
             self.ingredients = recipe
         except FileIOException:
             raise
+
+    def clear_recipe(self):
+        self.ingredients = {}
+        self.total_calories = 0

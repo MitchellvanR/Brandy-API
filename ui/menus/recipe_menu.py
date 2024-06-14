@@ -26,6 +26,7 @@ class RecipeMenu:
         Styler.print_cyan("[1]: Voeg een ingrediënt toe")
         Styler.print_cyan("[2]: Bewaar dit recept")
         Styler.print_cyan("[3]: Laad een recept")
+        Styler.print_cyan("[4]: Maak recept leeg")
         Styler.print_blue("--={*}=--\n")
 
     @staticmethod
@@ -52,7 +53,8 @@ class RecipeMenu:
                 RecipeMenu.save_recipe()
             case "3":
                 RecipeMenu.load_recipe()
-                # ConsoleOperations.clear()
+            case "4":
+                RecipeMenu.clear_recipe()
             case _:
                 ConsoleOperations.clear()
                 Styler.warning("Voer een geldige optie in\n")
@@ -89,3 +91,8 @@ class RecipeMenu:
             LoadRecipeMenu.start_load_recipe_menu(RecipeMenu.calorie_counter)
         except FileIOException:
             pass
+
+    @staticmethod
+    def clear_recipe() -> None:
+        ConsoleOperations.clear()
+        RecipeMenu.calorie_counter.clear_recipe()
