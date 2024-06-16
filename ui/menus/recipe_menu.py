@@ -34,6 +34,7 @@ class RecipeMenu:
         Styler.print_cyan("[5]: Verwijder een recept")
         Styler.print_cyan("[6]: Maak recept leeg")
         Styler.print_cyan("[7]: Recept afronden")
+        Styler.print_blue("--={*}=--\n")
 
     @staticmethod
     def start_recipe_menu() -> None:
