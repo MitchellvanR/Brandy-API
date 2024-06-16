@@ -1,4 +1,5 @@
 from ui.menus.exceptions import BackException, ExitException
+from ui.text.styler import Styler
 
 
 class InputHandler:
@@ -26,12 +27,12 @@ class InputHandler:
                     raise ExitException()
                 return conversion_function(user_input)
             except ValueError:
-                print(f"\n{error_message}\n")
+                Styler.warning(f"\n{error_message}\n")
 
     @staticmethod
     def prompt_int(prompt: str) -> int:
-        return InputHandler.prompt_number(prompt, int, "Please enter a whole number.")
+        return InputHandler.prompt_number(prompt, int, "Vul een geheel getal in.")
 
     @staticmethod
     def prompt_float(prompt: str) -> float:
-        return InputHandler.prompt_number(prompt, float, "Please enter a number (whole or decimal).")
+        return InputHandler.prompt_number(prompt, float, "Vul een getal in.")

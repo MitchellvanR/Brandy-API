@@ -1,6 +1,7 @@
 from models.meal_calorie_counter import MealCalorieCounter
 from datasource.exceptions import FileIOException
 from ui.menus.display_recipe_menu import DisplayRecipesMenu
+from ui.menus.finish_recipe_menu import FinishRecipeMenu
 from ui.input.input_handler import InputHandler
 from ui.menus.exceptions import BackException, ExitException
 from ui.console.console_operations import ConsoleOperations
@@ -32,7 +33,7 @@ class RecipeMenu:
         Styler.print_cyan("[4]: Laad een recept")
         Styler.print_cyan("[5]: Verwijder een recept")
         Styler.print_cyan("[6]: Maak recept leeg")
-        Styler.print_blue("--={*}=--\n")
+        Styler.print_cyan("[7]: Recept afronden")
 
     @staticmethod
     def start_recipe_menu() -> None:
@@ -64,6 +65,8 @@ class RecipeMenu:
                 RecipeMenu.start_display_recipe_menu(DisplayRecipeMenuModes.DELETE)
             case "6":
                 RecipeMenu.clear_recipe()
+            case "7":
+                RecipeMenu.finish_recipe()
             case _:
                 ConsoleOperations.clear()
                 Styler.warning("Voer een geldige optie in\n")
@@ -123,3 +126,8 @@ class RecipeMenu:
     def clear_recipe() -> None:
         ConsoleOperations.clear()
         RecipeMenu.calorie_counter.clear_recipe()
+
+    @staticmethod
+    def finish_recipe() -> None:
+        ConsoleOperations.clear()
+        FinishRecipeMenu.start_finish_recipe_menu(RecipeMenu.calorie_counter)

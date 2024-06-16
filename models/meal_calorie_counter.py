@@ -60,3 +60,12 @@ class MealCalorieCounter:
     def clear_recipe(self) -> None:
         self.ingredients = {}
         self.total_calories = 0
+
+    def calculate_total_meal_weight(self) -> float:
+        total_meal_weight = 0
+        for key in self.ingredients:
+            total_meal_weight += self.ingredients[key].get_weight()
+        return total_meal_weight
+
+    def calculate_calories_in_portion(self, total_weight, portion_weight) -> int:
+        return int((portion_weight * self.total_calories) / total_weight)
